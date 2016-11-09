@@ -6,9 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+import flappybird.gameimage.GameImage;
+import flappybird.gameimage.ImageSourceFile;
 
 public class GameScreen extends JPanel {
 
@@ -24,7 +28,15 @@ public class GameScreen extends JPanel {
 	private int bgMoveX = 0;
 	
 	public GameScreen() {
+		ImageSourceFile s = new ImageSourceFile();
+		s.fillMap();
+		s.setSource(GameImage.BACKGROUND.getKey());
 		
+		try {
+			bgImg = s.getImage();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void paint(Graphics g) {
