@@ -1,5 +1,6 @@
 package flappybird;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -51,6 +52,11 @@ public class Player {
 	
 	public void paint(Graphics g) {
 		g.drawImage(img, x, y, null);
+		
+		if (GameScreen.DEBUG) {
+			g.setColor(Color.WHITE);
+			g.drawString("[x="+x+", y="+y+", rychlost="+speed+"]", x, y-5);
+		}
 	}
 	
 	public int getHeight() {

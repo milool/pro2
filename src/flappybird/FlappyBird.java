@@ -16,7 +16,7 @@ public class FlappyBird extends JFrame {
 	public void initGUI() {
 		setSize(GameScreen.WIDTH, GameScreen.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("");
+		setTitle("Flappy Bird(FIM)");
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
