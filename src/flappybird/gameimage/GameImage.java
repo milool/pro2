@@ -4,11 +4,13 @@ import java.awt.Color;
 
 import flappybird.GameScreen;
 import flappybird.Player;
+import flappybird.Wall;
 
 public enum GameImage {
 
 	PLAYER("player", Player.WIDTH, Player.HEIGHT, new Color(255, 255, 255)),
-	BACKGROUND("background", GameScreen.WIDTH*3, GameScreen.HEIGHT, new Color(0, 0, 150));
+	BACKGROUND("background", GameScreen.WIDTH*3, GameScreen.HEIGHT, new Color(0, 0, 150)),
+	WALL("wall", Wall.WIDTH, GameScreen.HEIGHT, new Color(200, 0, 0));
 	
 	//num of items in enum
 	private static final int size = GameImage.values().length;

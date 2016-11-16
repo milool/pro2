@@ -32,6 +32,7 @@ public class GameScreen extends JPanel {
 	private int bgMoveX = 0;
 	
 	public GameScreen() {
+		//TODO
 		ImageSourceFile s = new ImageSourceFile();
 		s.fillMap();
 		s.setSource(GameImage.BACKGROUND.getKey());
