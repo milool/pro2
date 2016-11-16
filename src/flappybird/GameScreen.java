@@ -24,7 +24,7 @@ public class GameScreen extends JPanel {
 	private BufferedImage bgImg;
 	private Timer animationTimer;
 	private boolean pause = false;
-	private boolean gameRunning = true;
+	private boolean gameRunning = false;
 	private int bgMoveX = 0;
 	
 	public GameScreen() {

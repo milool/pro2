@@ -10,27 +10,33 @@ public class FlappyBird extends JFrame {
 	private GameScreen gs;
 	
 	public FlappyBird() {
-		gs = new GameScreen();
-		gs.init();
-		getContentPane().add(gs, BorderLayout.CENTER);
 		pack();
 	}
 	
 	public void initGUI() {
 		setSize(GameScreen.WIDTH, GameScreen.HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("");
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
 	public void start() {
-		
+		gs = new GameScreen();
+		gs.init();
+		getContentPane().add(gs, BorderLayout.CENTER);
+		gs.setVisible(true);
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new FlappyBird().initGUI();
+				FlappyBird app = new FlappyBird();
+				app.initGUI();
+				app.start();
 			}
 		});
 	}
