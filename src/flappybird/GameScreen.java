@@ -24,6 +24,13 @@ public class GameScreen extends JPanel {
 	
 	public static final int SPEED = -2;
 	
+	public static final int NUM_OF_WALLS = 4;
+	
+	private WallList walls;
+	private Wall wall;
+	private Wall prevWall;
+	//TODO
+	
 	private Player player;
 	private BufferedImage bgImg;
 	private Timer animationTimer;
@@ -50,6 +57,30 @@ public class GameScreen extends JPanel {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		s.setSource(GameImage.WALL.getKey());
+		
+		try {
+			Wall.setImg(s.getImage());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		walls = new WallList();
+	}
+	
+	private void buildWalls(int pocet) {
+		Wall w;
+		int distance = GameScreen.WIDTH;
+		
+		for (int i = 0; i < pocet; i++) {
+			w = new Wall(distance);
+			walls.add(w);
+			distance += GameScreen.WIDTH/2;
+		}
+		
+		distance -= GameScreen.WIDTH - Wall.WIDTH;
+		Wall.setLastWallDistance(distance);
 	}
 	
 	public void paint(Graphics g) {
@@ -61,6 +92,10 @@ public class GameScreen extends JPanel {
 		if (GameScreen.DEBUG) {
 			g.setColor(Color.WHITE);
 			g.drawString("[posunPozadiX="+bgMoveX+"]", 10, 20);
+		}
+		
+		for (Wall w : walls) {
+			w.paint(g);
 		}
 		
 		player.paint(g);
@@ -94,7 +129,7 @@ public class GameScreen extends JPanel {
 	}
 	
 	private void prepareNewGame() {
-		
+		buildWalls(NUM_OF_WALLS);
 	}
 	
 	public void init() {
