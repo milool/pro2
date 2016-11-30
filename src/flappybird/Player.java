@@ -63,10 +63,6 @@ public class Player {
 		return img.getHeight();
 	}
 	
-	/**
-	 * 
-	 * @return
-	 */
 	public Rectangle getSkeleton() {
 		return new Rectangle(x, y, img.getWidth(), img.getHeight());
 	}

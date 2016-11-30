@@ -1,6 +1,8 @@
 package flappybird;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -11,6 +13,7 @@ public class Wall {
 	public static final int SPEED = -6;
 	//mezera mezi horni a dolni casti zdi
 	public static final int GAP = 200;
+	public static final int SCORE = 1;
 	
 	private static int lastWallDistance;
 	
@@ -40,10 +43,15 @@ public class Wall {
 		//horni zed
 		g.drawImage(img, x, y-GameScreen.HEIGHT-GAP, null);
 		
+		if (GameScreen.DEBUG) {
+			g.setColor(Color.WHITE);
+			g.drawString("[x="+x+", y="+y+", height="+height+"]", x, y-5);
+		}
+		
 	}
 	
 	public void move() {
-		x += SPEED;
+		x += Wall.SPEED;
 		
 		if (x <= -Wall.WIDTH) {
 			x = Wall.lastWallDistance;
@@ -71,6 +79,14 @@ public class Wall {
 
 	public static void setImg(BufferedImage img) {
 		Wall.img = img;
+	}
+	
+	public Rectangle getSkeletonDownWall() {
+		return new Rectangle(x, y, Wall.WIDTH, height);
+	}
+	
+	public Rectangle getSkeletonUpWall() {
+		return new Rectangle(x, 0, Wall.WIDTH, GameScreen.HEIGHT - (height+Wall.GAP));
 	}
 	
 }
