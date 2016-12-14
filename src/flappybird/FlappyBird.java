@@ -11,6 +11,7 @@ import javax.swing.SwingWorker;
 
 import flappybird.gameimage.ImageManager;
 import flappybird.gameimage.ImageSourceFile;
+import flappybird.gameimage.ImageSourceUrl;
 
 public class FlappyBird extends JFrame {
 
@@ -21,7 +22,8 @@ public class FlappyBird extends JFrame {
 	}
 	
 	private void setImageSource() {
-		im = new ImageManager(new ImageSourceFile());
+		//im = new ImageManager(new ImageSourceFile());
+		im = new ImageManager(new ImageSourceUrl());
 	}
 	
 	public void initGUI() {
