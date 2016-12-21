@@ -43,6 +43,7 @@ public class GameScreen extends JPanel {
 	private Font font;
 	private Font fontMsg;
 	private Player player;
+	private Bonus bonus;
 	private BufferedImage bgImg;
 	private Timer animationTimer;
 	private boolean pause = false;
@@ -55,6 +56,8 @@ public class GameScreen extends JPanel {
 		Wall.setImg(im.getImage(GameImage.WALL));
 		
 		walls = new WallList();
+		
+		bonus = new Bonus(im.getImage(GameImage.BONUS),walls);
 		
 		buildLabels();
 	}
@@ -107,6 +110,7 @@ public class GameScreen extends JPanel {
 		}
 		
 		player.paint(g);
+		bonus.paint(g);
 		lbScore.paint(g);
 		lbMsg.paint(g);
 	}
@@ -125,10 +129,17 @@ public class GameScreen extends JPanel {
 				}
 				
 				player.move();
+				bonus.move();
 			
 				if (player.getX() >= wall.getX()) {
 					setNextWallPrevious();
 					incScoreWall();
+					lbScore.setText(score + "");
+				}
+				
+				if (isBonusCollision()) {
+					bonus.setNewBonus();
+					incScoreBonus();
 					lbScore.setText(score + "");
 				}
 			
@@ -145,6 +156,10 @@ public class GameScreen extends JPanel {
 		}
 	}
 	
+	private boolean isBonusCollision() {
+		return player.getSkeleton().intersects(bonus.getSkeleton());
+	}
+
 	private void setNextWallPrevious() {
 		wall = walls.getNext();
 		prevWall = walls.getPrevious();
@@ -229,6 +244,10 @@ public class GameScreen extends JPanel {
 	
 	private void incScoreWall() {
 		score += Wall.SCORE;
+	}
+	
+	private void incScoreBonus() {
+		score += Bonus.SCORE;
 	}
 
 	private void resetWalls() {

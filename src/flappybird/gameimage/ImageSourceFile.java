@@ -15,6 +15,7 @@ public class ImageSourceFile extends ImageSource {
 		getMap().put(GameImage.BACKGROUND.getKey(), "bg.png");
 		getMap().put(GameImage.PLAYER.getKey(), "super-tux.png");
 		getMap().put(GameImage.WALL.getKey(), "wall.png");
+		getMap().put(GameImage.BONUS.getKey(), "bonus.png");
 	}
 
 	@Override

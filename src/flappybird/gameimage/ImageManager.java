@@ -27,6 +27,7 @@ public class ImageManager {
 		prepareImage(GameImage.PLAYER);
 		prepareImage(GameImage.BACKGROUND);
 		prepareImage(GameImage.WALL);
+		prepareImage(GameImage.BONUS);
 	}
 
 	private BufferedImage loadImage(GameImage o) {

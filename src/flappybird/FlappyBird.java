@@ -2,6 +2,9 @@ package flappybird;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +18,8 @@ import flappybird.gameimage.ImageSourceUrl;
 
 public class FlappyBird extends JFrame {
 
+	public static final String FILE = "config.txt";
+	
 	private ImageManager im;
 	
 	public FlappyBird() {
@@ -22,8 +27,20 @@ public class FlappyBird extends JFrame {
 	}
 	
 	private void setImageSource() {
-		//im = new ImageManager(new ImageSourceFile());
-		im = new ImageManager(new ImageSourceUrl());
+		String line = "1";
+		
+		try (BufferedReader in = new BufferedReader(new FileReader(FILE))) {
+			line = in.readLine();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		if (line.equals("1")) {
+			im = new ImageManager(new ImageSourceUrl());
+		}
+		else {
+			im = new ImageManager(new ImageSourceFile());
+		}
 	}
 	
 	public void initGUI() {
